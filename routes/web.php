@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/addblog', [App\Http\Controllers\BlogController::class, 'index'])->name('add');
+Route::post('/postit', [App\Http\Controllers\BlogController::class, 'store'])->name('post');

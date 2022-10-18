@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use App\Models\BlogDetail;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $blogs = Blog::where('user_id', '=', Auth::user()->id)->with('detail')->paginate(5);
+        return view('home', compact('blogs'));
     }
 }
