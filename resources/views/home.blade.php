@@ -35,14 +35,32 @@
                             <a class="btn btn-danger" href="" role="button">Delete</a>
                     </td>
                 </tr> 
-                {{-- @empty
-                <tr>
-                    <td colspan="3">There are no users.</td>
-                </tr> --}}
             @endforeach
+            
         </tbody>
     </table>
-    {!! $blogs->withQueryString()->links('pagination::bootstrap-5') !!}
+         {!! $blogs->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
-    
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).on("keyup","#search",function(){
+        console.log("search");
+        search();
+    });
+    //search();
+    function search(){
+        console.log("search function");
+         var search = $('#search').val();
+         $.post('{{ route("search") }}',
+          {
+             _token: "{{ csrf_token() }}",
+             search:search
+           },
+           function(output){
+                $('tbody').html(output);
+           });
+    }
+</script>
+    

@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/search', [App\Http\Controllers\HomeController::class, 'showData'])->name('search');
 Route::get('/addblog', [App\Http\Controllers\BlogController::class, 'index'])->name('add');
 Route::post('/postit', [App\Http\Controllers\BlogController::class, 'store'])->name('post');
