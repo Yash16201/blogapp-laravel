@@ -113,6 +113,7 @@ class BlogController extends Controller
          $details->timestamps = false;
          $details->save();
          $file-> move(public_path('public/Image'), $filename);
+         return redirect('/');
        }
     }
 }
