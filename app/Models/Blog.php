@@ -14,11 +14,11 @@ class Blog extends Model
         return $this->hasOne(BlogDetail::class, 'blog_id', 'id');
     }
 
-    public function blog_title(): Attribute
+    public function blogtitle(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => strtoupper($value)
-            // set: fn ($value) => $value,
+            get: fn($value) => ucfirst($value),   // accessor
+            set: fn ($value) => strtolower($value),  // mutator
         );
     }
 }
