@@ -30,9 +30,9 @@
                         <p>{{ $blog['detail']->post_text }}</p>
                     </td>
                     <td width="30%">
-                            <a class="btn btn-success" href="" role="button">View </a>
-                            <a class="btn btn-primary mx-2" href="" role="button">Edit</a> 
-                            <a class="btn btn-danger" href="" role="button">Delete</a>
+                            <a class="btn btn-success" href="{{ url('/viewblog/'.$blog->id) }}" role="button">View </a>
+                            <a class="btn btn-primary mx-2" href="{{ url('/edit/'.$blog->id) }}" role="button">Edit</a> 
+                            <a class="btn btn-danger" href="{{ url('/delete/'.$blog->id) }}" role="button">Delete</a>
                     </td>
                 </tr> 
             @endforeach
