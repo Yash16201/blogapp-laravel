@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::where('user_id', '=', Auth::user()->id)->with('detail')->paginate(5);
+        $blogs = Blog::where('user_id', '=', Auth::user()->id)->where('status','=','0')->with('detail')->paginate(5);
         
         return view('home',compact('blogs'));
     }
@@ -34,7 +34,7 @@ class HomeController extends Controller
         
         $output = '';
         if (!empty($request->search) || !ctype_space($request->search)) {
-            $blogs = Blog::where('user_id', '=', Auth::user()->id)->where('blog_title','LIKE','%'.$request->search.'%')->with('detail')->paginate(5);
+            $blogs = Blog::where('user_id', '=', Auth::user()->id)->where('blog_title','LIKE','%'.$request->search.'%')->where('status','=','0')->with('detail')->paginate(5);
             foreach($blogs as $blog){
                 $output .= '
                 <tr>
