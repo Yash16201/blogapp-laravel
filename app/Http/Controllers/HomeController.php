@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Blog;
 use App\Models\BlogDetail;
 use Auth;
@@ -24,8 +25,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function showall()
+    {
+
+        $user = Auth::user();
+        if (Gate::allows('admin_only', $user)) {
+            $blogs = Blog::with('detail')->paginate(5);
+            return view('adminviewblogs',compact('blogs'));
+        } else {
+            abort(403);
+        }
+        
+    }
     public function index()
     {
+       
         $blogs = Blog::where('user_id', '=', Auth::user()->id)->where('status','=','0')->with('detail')->paginate(5);
         
         return view('home',compact('blogs'));

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/viewall', [App\Http\Controllers\HomeController::class, 'showall'])->name('adminview');
 Route::post('/search', [App\Http\Controllers\HomeController::class, 'showData'])->name('search');
 Route::get('/addblog', [App\Http\Controllers\BlogController::class, 'index'])->name('add');
 Route::get('/viewblog/{id}', [App\Http\Controllers\BlogController::class, 'viewblog'])->name('viewblog');
